@@ -1,0 +1,20 @@
+services:
+
+  app1:
+    image: ${ecr_repo_url}:latest
+    restart: always
+
+  app2:
+    image: ${ecr_repo_url}:latest
+    restart: always
+
+  nginx:
+    image: nginx:latest
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - app1
+      - app2
